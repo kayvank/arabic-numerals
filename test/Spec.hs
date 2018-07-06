@@ -21,3 +21,6 @@ main = hspec $ do
    it "must observe addition  commutative property" $ 
      value (Inc(Inc(Zero)) `mappend` Inc(Inc(Inc(Zero))))  ==
         value (Inc(Inc(Zero)) `mappend` Inc(Inc(Inc(Zero))))  `shouldBe` True
+
+   it "must convert integer to ANumeral format" $
+    value' (value (Inc(Inc(Zero))))  == Inc(Inc(Zero)) `shouldBe` True

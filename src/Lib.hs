@@ -3,11 +3,15 @@ module Lib  where
 someFunc :: IO ()
 someFunc = putStrLn "someFunc"
 
-data ANumeral  = Zero | Inc ANumeral   deriving  Show
+data ANumeral  = Zero | Inc ANumeral 
 
 value :: ANumeral -> Int
 value Zero = 0
-value  (Inc x) = 1 + value x
+value  (Inc x) = 1 + value x 
+
+value' :: Int -> ANumeral
+value' 0 = Zero
+value' x = Inc(value' (x - 1) )
 
 add' :: ANumeral -> ANumeral -> ANumeral
 add' m1 m2 = m1 `mappend` m2
@@ -23,4 +27,5 @@ instance Monoid (ANumeral ) where
   mappend Zero x =  x
   mappend (Inc y) x =  mappend y (Inc x)
   
-
+instance Show ANumeral where
+  show x = show (value x)
